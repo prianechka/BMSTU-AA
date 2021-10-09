@@ -1,0 +1,22 @@
+\documentclass[a4paper,14pt, unknownkeysallowed]{extreport}
+
+\include{imports}
+
+\begin{document}
+\def\contentsname{Содержание}
+\include{title}
+
+\include{table_of_contents}
+\include{intro}
+
+\include{analyze}
+\include{contruct}
+\include{technologic}
+\include{experiment}
+
+\include{finish}
+
+\addcontentsline{toc}{chapter}{Список литературы}
+\bibliographystyle{utf8gost705u}  %% стилевой файл для оформления по ГОСТу
+\bibliography{source}     %% имя библиографической базы (bib-файла) 
+\end{document}

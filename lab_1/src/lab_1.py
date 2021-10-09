@@ -111,37 +111,38 @@ def damerau_levenshtein(str_1, str_2):
     return result
 
 def test_lev_rec(str_1, str_2):
-    N = 1000
+    N = 100
     time = process_time_ns()
     for i in range(N):
         levenshtein_rec(str_1, str_2)
     print("Рекурсионный: {}".format((process_time_ns() - time)/N))
 
 def test_lev_rec_matr(str_1, str_2):
-    N = 1000
+    N = 100
     time = process_time_ns()
     for i in range(N):
         levenshtein_rec_matrix(str_1, str_2)
     print("Рекурсионный с матрицей: {}".format((process_time_ns() - time)/N))
 
 def test_lev_matr(str_1, str_2):
-    N = 1000
+    N = 100
     time = process_time_ns()
     for i in range(N):
         levenshtein_not_rec(str_1, str_2)
     print("Матричный алгоритм: {}".format((process_time_ns() - time)/N))
 
 def test_damer(str_1, str_2):
-    N = 1000
+    N = 100
     time = process_time_ns()
     for i in range(N):
         damerau_levenshtein(str_1, str_2)
     print("Дамерау: {}".format((process_time_ns() - time)/N))
 
 def test(str_1, str_2):
+    print("N = ", len(str_1))
     test_lev_matr(str_1, str_2)
     test_lev_rec_matr(str_1, str_2)
-    test_lev_rec(str_1, str_2)
+    #test_lev_rec(str_1, str_2)
     test_damer(str_1, str_2)
     print("--------------")
 
@@ -161,6 +162,19 @@ s2 = input("Введите строку 2: ")
 test1(s1, s2)
 
 '''
+test("a" * 15, "a" * 7 + "BCaV" + "b" * 4)
+test("a" * 20, "a" * 14 + "BCaV" + "b" * 2)
+test("a" * 25, "a" * 18 + "BCaV" + "b" * 3)
+test("a" * 30, "a" * 20 + "BCaV" + "b" * 6)
+test("a" * 35, "a" * 29 + "BCaV" + "b" * 2)
+test("a" * 40, "a" * 34 + "BCaV" + "b" * 2)
+test("a" * 45, "a" * 39 + "BCaV" + "b" * 2)
+test("a" * 50, "a" * 45 + "BCaV" + "b")
+test("a" * 60, "a" * 55 + "BCaV" + "b")
+test("a" * 70, "a" * 63 + "BCaV" + "b" * 2)
+test("a" * 80, "a" * 71 + "BCaV" + "b" * 4)
+test("a" * 90, "a" * 80 + "BCaV" + "b" * 6)
+test("a" * 100, "a" * 92 + "BCaV" + "b" * 4)
 test("test", "Test")
 test("", "")
 test("A", "B")
