@@ -104,13 +104,36 @@ def optvinograd(matrix_1, matrix_2):
                         (matrix_1[i][N - 1] * matrix_2[N - 1][j])
         return result_matrix
 
-matrix_1 = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+matrix_1 = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
 matrix_2 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
-print(classic(matrix_1, matrix_2))
+print("Матрица 1:")
+for el in matrix_1:
+    print(el)
 print("-" * 20)
-print(vinograd(matrix_1, matrix_2))
+print("Матрица 2:")
+for el in matrix_2:
+    print(el)
 print("-" * 20)
-print(optvinograd(matrix_1, matrix_2))
+
+print("Результат работы алгоритма классического умножения матриц")
+classic_matr = classic(matrix_1, matrix_2)
+for el in classic_matr:
+    print(el)
+
 print("-" * 20)
+
+print("Результат работы алгоритма Винограда умножения матриц")
+vinograd_matr = vinograd(matrix_1, matrix_2)
+for el in vinograd_matr:
+    print(el)
+
+print("-" * 20)
+print("Результат работы оптимизированного алгоритма Винограда умножения матриц")
+optvinograd_matr = optvinograd(matrix_1, matrix_2)
+for el in optvinograd_matr:
+    print(el)
+
+print("-" * 20)
+print("Эталонный результат умножения:")
 print(np.array(matrix_1).dot(np.array(matrix_2)))

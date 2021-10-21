@@ -13,8 +13,8 @@ def measure_time():
     classic_time = []
     vinograd_time = []
     optvinograd_time = []
-    N = [1, 3, 5, 9, 15, 31, 51, 75, 101, 201, 401]
-    # N = [2, 4, 6, 10, 16, 30, 50, 76, 100, 200, 400]
+    # N = [1, 3, 5, 9, 15, 31, 51, 75, 101, 201, 401]
+    N = [2, 4, 6, 10, 16, 30, 50, 76, 100, 200, 400]
     for n_elem in N:
         print(n_elem)
         matrix_1 = [[randint(-50, 50) for i in range(n_elem)] for j in range(n_elem)]
@@ -22,16 +22,16 @@ def measure_time():
 
         k = 500
         if (n_elem > 20):
-            k = 20
+            k = 15
         if (n_elem > 100):
             k = 5
         if (n_elem > 150):
-            k = 2
+            k = 1
         classic_time.append(measure_func(matrix_1, matrix_2, classic, k))
         vinograd_time.append(measure_func(matrix_1, matrix_2, vinograd, k))
         optvinograd_time.append(measure_func(matrix_1, matrix_2, optvinograd, k))
     
-    plt.title("Измерение времени для нечётных N")
+    plt.title("Измерение времени для чётных N")
     plt.xlabel("Размер квадратной матрицы")
     plt.ylabel("Время работы в нс")
     plt.plot(N, classic_time, label = "classic")
