@@ -36,14 +36,12 @@ def levenshtein_rec_matrix(str_1, str_2):
     N1, N2 = len(str_1), len(str_2)
     matrix = [[-1] * (N2 + 1) for i in range(N1 + 1)]
     result = recursion(str_1, str_2, matrix)
-    '''
     print("Рекурсивный вариант (с матрицей) Левенштайна: {}".format(result))
     print("Итоговая матрица: ")
     for i in range(N1 + 1):
         for j in range(N2 + 1):
             print(" {} ".format(matrix[i][j]), end = '')
         print()
-    '''
     return result
 
 def levenshtein_not_rec(str_1, str_2):
@@ -100,14 +98,12 @@ def damerau_levenshtein(str_1, str_2):
     N1, N2 = len(str_1), len(str_2)
     matrix = [[-1] * (N2 + 1) for i in range(N1 + 1)]
     result = recursion(str_1, str_2, matrix)
-    '''
     print("Расстояние Дамерау-Левенштайна (с матрицей): {}".format(result))
     print("Итоговая матрица: ")
     for i in range(N1 + 1):
         for j in range(N2 + 1):
             print(" {} ".format(matrix[i][j]), end = '')
         print()
-    '''
     return result
 
 def test_lev_rec(str_1, str_2):
