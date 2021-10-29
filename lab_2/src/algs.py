@@ -4,35 +4,46 @@ def check_sizes(N1, M1, N2, M2):
     result = True
     if (N1 == 0) or (M1 == 0) or (N2 == 0) or (M2 == 0):
         result = False
-    elif (M1 != N2):
+    if (M1 != N2):
         result = False
     return result
 
 def classic(matrix_1, matrix_2):
-    N1, M1 = len(matrix_1), len(matrix_1[0])
-    N2, M2 = len(matrix_2), len(matrix_2[0])
+    try:
+        N1, M1 = len(matrix_1), len(matrix_1[0])
+        N2, M2 = len(matrix_2), len(matrix_2[0])
+    except:
+        print("Данные введены некорректно!")
+        return []
 
     result_matrix = []
     check = check_sizes(N1, M1, N2, M2)
 
     if (check):
-        result_matrix = [[0] * N1 for i in range(M2)]
+        result_matrix = [[0] * M2 for i in range(N1)]
         for i in range(N1):
             for j in range(M2):
                 for k in range(M1):
                     result_matrix[i][j] += (matrix_1[i][k] * \
                                           matrix_2[k][j])
+    if (result_matrix == []):
+        print("Матрицы не соотносятся по размеру!")
     return result_matrix
 
 def vinograd(matrix_1, matrix_2):
-    N1, M1 = len(matrix_1), len(matrix_1[0])
-    N2, M2 = len(matrix_2), len(matrix_2[0])
+    try:
+        N1, M1 = len(matrix_1), len(matrix_1[0])
+        N2, M2 = len(matrix_2), len(matrix_2[0])
+    except:
+        print("Данные введены некорректно!")
+        return []
+
 
     result_matrix = []
     check = check_sizes(N1, M1, N2, M2)
 
     if (check):
-        result_matrix = [[0] * N1 for i in range(M2)]
+        result_matrix = [[0] * M2 for i in range(N1)]
 
         M = N1
         N = M1
@@ -63,17 +74,25 @@ def vinograd(matrix_1, matrix_2):
                 for j in range(Q):
                     result_matrix[i][j] += \
                         (matrix_1[i][N - 1] * matrix_2[N - 1][j])
-        return result_matrix
+        
+    if (result_matrix == []):
+        print("Матрицы не соотносятся по размеру!")
+    return result_matrix
 
 def optvinograd(matrix_1, matrix_2):
-    N1, M1 = len(matrix_1), len(matrix_1[0])
-    N2, M2 = len(matrix_2), len(matrix_2[0])
+    try:
+        N1, M1 = len(matrix_1), len(matrix_1[0])
+        N2, M2 = len(matrix_2), len(matrix_2[0])
+    except:
+        print("Данные введены некорректно!")
+        return []
+
 
     result_matrix = []
     check = check_sizes(N1, M1, N2, M2)
 
     if (check):
-        result_matrix = [[0] * N1 for i in range(M2)]
+        result_matrix = [[0] * M2 for i in range(N1)]
 
         M = N1
         N = M1
@@ -102,9 +121,14 @@ def optvinograd(matrix_1, matrix_2):
                 if (flag):
                     result_matrix[i][j] += \
                         (matrix_1[i][N - 1] * matrix_2[N - 1][j])
-        return result_matrix
+    if (result_matrix == []):
+        print("Матрицы не соотносятся по размеру!")
+    return result_matrix
 
+# matrix_1 = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1], [1, 2, 3, 4]]
+# matrix_1 = []
 matrix_1 = [[16, 15, 14, 13], [12, 11, 10, 9], [8, 7, 6, 5], [4, 3, 2, 1]]
+# matrix_1 = [[16, 15, 14, 13, 4], [12, 11, 10, 9, 5], [8, 7, 6, 5, 1], [4, 3, 2, 1, 9]]
 matrix_2 = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
 print("Матрица 1:")
@@ -136,4 +160,9 @@ for el in optvinograd_matr:
 
 print("-" * 20)
 print("Эталонный результат умножения:")
-print(np.array(matrix_1).dot(np.array(matrix_2)))
+try:
+    print(np.array(matrix_1).dot(np.array(matrix_2)))
+except:
+    print("Данные введены некорректно!")
+
+print("-" * 20)
