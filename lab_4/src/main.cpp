@@ -11,6 +11,7 @@
 #include <cmath>
 #include <mutex>
 #include <fstream>
+#include <string>
 
 void find_most_corr(std::vector<std::vector<double>> matrix, int n, int m)
 {
@@ -53,8 +54,8 @@ void find_most_corr(std::vector<std::vector<double>> matrix, int n, int m)
         }
     }
     std::cout << "Результаты работы классического алгоритма: " << std::endl;
-    std::cout << "Индекс 1: " << idx_1 + 1 << std::endl;
-    std::cout << "Индекс 2: " << idx_2 + 1 << std::endl;
+    std::cout << "Номер столбца 1 (начиная с 1): " << idx_1  + 1 << std::endl;
+    std::cout << "Номер столбца 2 (начиная с 1): " << idx_2 + 1 << std::endl;
     std::cout << "Значение корреляции: " << max_cor << std::endl;
     std::cout << std::endl;
     std::cout << std::endl;
@@ -164,10 +165,11 @@ void find_most_corr_with_threads(std::vector<std::vector<double>> matrix, int n,
     {
         threads_1[i].join();
     }
+
     std::cout << "Результаты работы алгоритма с использованием потоков: " << std::endl;
-    std::cout << "Индекс 1: " << idx_1  + 1 << std::endl;
-    std::cout << "Индекс 2: " << idx_2 + 1 << std::endl;
-    std::cout << "Значение корреляции: " << max_cor << std::endl;
+    std::cout << "Номер столбца 1 (начиная с 1): " << idx_1  + 1 << std::endl;
+    std::cout << "Номер столбца 2 (начиная с 1): " << idx_2 + 1 << std::endl;
+    std::cout << "Значение корреляции: " << max_cor << std::endl;ы
 }
 
 void measure_time(std::vector<std::vector<double>> matrix, int row, int col, int n_threads)
@@ -195,7 +197,10 @@ void measure_time(std::vector<std::vector<double>> matrix, int row, int col, int
 
 std::vector<std::vector<double>> read_matrix_from_file(size_t &row, size_t &col)
 {
-    std::ifstream in("tests/test1.txt");
+    std::string filename;
+    std::cout << "Введите имя теста, которое нужно открыть (с расширением)" << std::endl;
+    std::cin >> filename;
+    std::ifstream in(filename);
     in >> row;
     in >> col;
     std::vector<std::vector<double>> matrix(row);
@@ -221,6 +226,14 @@ void print_matrix(std::vector<std::vector<double>> matrix, int row, int col)
     }
     std::cout << std::endl;
     std::cout << std::endl;
+}
+
+int check_size(size_t row, size_t col)
+{
+    int result = 0;
+    if ((row < 2) or (col < 2))
+        result = 1;
+    return result;
 }
 
 void measure_threads(int n_threads)
@@ -256,7 +269,14 @@ int main()
     size_t row, col;
     std::vector<std::vector<double>> matrix = read_matrix_from_file(row, col);
     int n_threads = 3;
-    print_matrix(matrix, row, col);
-    find_most_corr(matrix, row, col);
-    find_most_corr_with_threads(matrix, row, col, n_threads);
+    int check = check_size(row, col);
+    if (check == 0)
+    {
+        print_matrix(matrix, row, col);
+        find_most_corr(matrix, row, col);
+        find_most_corr_with_threads(matrix, row, col, n_threads);
+    }
+    else
+        std::cout << "Размеры не соответствуют ТЗ";
+    return 0;
 }
