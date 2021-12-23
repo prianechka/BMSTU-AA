@@ -1,0 +1,57 @@
+\chapter{Технологическая часть}
+В этом разделе будут приведены листинги кода и результаты функционального тестирования.
+
+\section{Средства реализации программного обеспечения}
+В качестве языка программирования выбран Python 3.9, так как имеется опыт разработки проектов на этом языке.
+Для замера процессорного времени используется функция process\_time\_ns из библиотеки time. 
+В её результат не включается время, когда процессор не выполняет задачу \cite{python}.
+
+\section{Листинг кода}
+\FloatBarrier
+На листинге 3.1 представлена реализация алгоритма полного перебора.
+На листинге 3.2 представлена реализация алгоритма бинарного поиска. 
+На листинге 3.3 представлена реализация алгоритма поиска с помощью сегментов.
+
+\begin{lstinputlisting}[language=Python, caption=Реализация алгоритма полного перебора, linerange={9-23}, 
+	basicstyle=\footnotesize\ttfamily, frame=single,breaklines=true]{src/main.py}
+\end{lstinputlisting}
+\FloatBarrier
+
+\FloatBarrier
+\begin{lstinputlisting}[language=Python, caption=Реализация алгоритма бинарного поиска, linerange={24-61}, 
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{src/main.py}
+\end{lstinputlisting}
+\FloatBarrier
+
+\FloatBarrier
+\begin{lstinputlisting}[language=Python, caption=Реализация алгоритма поиска с помощью сегментов, linerange={63-108}, 
+	basicstyle=\footnotesize\ttfamily, frame=single, breaklines=true]{src/main.py}
+\end{lstinputlisting}
+\FloatBarrier
+
+\section{Функциональные тесты}
+В таблице 3.1 приведены результаты функциональных тестов. 
+В первом столбце -- ключ.
+Во втором столбце -- результат.
+
+\FloatBarrier
+\begin{table}[h]
+	\caption{Функциональные тесты}
+	\centering
+	\begin{tabular}{| c | c |}
+		\hline
+		Ключ & Результат \\ \hline
+		1234567890 & Ключ не был обнаружен \\
+		6762048930 & Носов Ипат Бориславович \\
+		0000023802 & Доронин Богдан Ильясович \\
+		9999867026 & Симонов Силантий Якубович \\
+		\hline
+	\end{tabular}
+\end{table}
+\FloatBarrier
+Все тесты алгоритмами были пройдены успешно.
+
+\section{Вывод}
+Были приведены листинги кода.
+Были проведены функциональные тесты.
+Все алгоритмы справились с тестированием.
